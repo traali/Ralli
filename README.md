@@ -33,7 +33,7 @@ Ralli is a high-performance, real-time scavenger hunt platform designed for mode
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/ArtoOinonen/Ralli.git
+   git clone https://github.com/traali/Ralli.git
    cd Ralli
    ```
 
