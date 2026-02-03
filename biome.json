@@ -1,64 +1,75 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-    "organizeImports": {
-        "enabled": true
-    },
-    "linter": {
-        "enabled": true,
-        "rules": {
-            "recommended": true,
-            "style": {
-                "useConst": "error",
-                "useSingleVarDeclarator": "error",
-                "useNamingConvention": "error"
-            },
-            "complexity": {
-                "noExcessiveCognitiveComplexity": {
-                    "level": "error",
-                    "options": {
-                        "maxAllowedComplexity": 15
-                    }
-                },
-                "noForEach": "warn"
-            },
-            "correctness": {
-                "noUnusedVariables": "error",
-                "noUndeclaredVariables": "error",
-                "useExhaustiveDependencies": "error",
-                "useHookAtTopLevel": "error"
-            },
-            "security": {
-                "noDangerouslySetInnerHtml": "error",
-                "noGlobalEval": "error"
-            },
-            "suspicious": {
-                "noExplicitAny": "error",
-                "noConsoleLog": "error",
-                "noDoubleEquals": "error"
-            }
-        }
-    },
-    "javascript": {
-        "formatter": {
-            "quoteStyle": "single",
-            "trailingComma": "all",
-            "semicolons": "always",
-            "lineWidth": 100
-        }
-    },
-    "overrides": [
-        {
-            "include": [
-                "src/lib/supabase.ts",
-                "src/types/*.ts"
-            ],
-            "linter": {
-                "rules": {
-                    "suspicious": {
-                        "noConsoleLog": "off"
-                    }
-                }
-            }
-        }
-    ]
+	"$schema": "https://biomejs.dev/schemas/2.3.13/schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"style": {
+				"useConst": "error",
+				"useSingleVarDeclarator": "error",
+				"useNamingConvention": "off"
+			},
+			"complexity": {
+				"noExcessiveCognitiveComplexity": {
+					"level": "error",
+					"options": {
+						"maxAllowedComplexity": 15
+					}
+				},
+				"noForEach": "warn"
+			},
+			"correctness": {
+				"noUnusedVariables": "error",
+				"noUndeclaredVariables": "error",
+				"useExhaustiveDependencies": "error",
+				"useHookAtTopLevel": "error"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "error",
+				"noGlobalEval": "error"
+			},
+			"suspicious": {
+				"noExplicitAny": "error",
+				"noDoubleEquals": "error",
+				"noConsole": {
+					"level": "error",
+					"options": {
+						"allow": ["log"]
+					}
+				}
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"trailingCommas": "all",
+			"semicolons": "always",
+			"lineWidth": 100
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/src/lib/supabase.ts", "**/src/types/**/*.ts"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noConsole": {
+							"level": "off",
+							"options": {
+								"allow": ["log"]
+							}
+						}
+					}
+				}
+			}
+		}
+	]
 }

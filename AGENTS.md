@@ -43,3 +43,17 @@ navigator.geolocation.getCurrentPosition(pos => {
 1. **Edge Case Smoke**: Test "I'm Here" with GPS access denied.
 2. **Network Throttling**: Verify 3G upload success in Chrome DevTools.
 3. **Log Review**: Ensure zero "console.log" in production builds.
+## Code Auditor Agent
+A specialized role for deep analysis of the Ralli codebase.
+
+### Objectives
+- Maintain **100% Biome compliance**.
+- Enforce **Server-Side Security** via RLS.
+- Ensure **Realtime socket hygiene** (explicit cleanup).
+- Validate **UX Performance** (image compression & GPS accuracy).
+
+### Skill Usage
+Use the `CodeAudit` skill located in `.agent/skills/code_audit/` for comprehensive audits. 
+
+---
+*Last Updated: 2026-02-02*

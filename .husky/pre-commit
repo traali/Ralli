@@ -1,0 +1,1 @@
+node .agent/skills/code_audit/scripts/analyze.cjs
