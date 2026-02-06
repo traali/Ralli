@@ -1,0 +1,27 @@
+# Ralli
+
+Ralli is a real-time scavenger hunt platform for event organizers. Participants join games, navigate to GPS waypoints, submit photo proof, and compete on live leaderboards.
+
+## Architecture
+- Frontend: React 19 + Vite (PWA-optimized)
+- Backend: Supabase (PostgreSQL + Realtime + Auth)
+- Maps: Leaflet with OpenStreetMap
+- Styling: Tailwind CSS
+- Linting: Biome (replaces ESLint+Prettier)
+
+## File Structure
+- src/components/    - React components
+- src/pages/         - Route pages
+- src/hooks/         - Custom React hooks
+- src/lib/           - Supabase client, utilities
+- supabase/          - Database migrations, RLS policies
+
+## Key Decisions
+- PWA for "app-like" mobile experience without app store
+- Row-Level Security for multi-tenant game isolation
+- Real-time subscriptions for live leaderboard updates
+
+## How to Extend
+1. Add new waypoint types in src/components/Waypoint/
+2. Modify scoring logic in src/hooks/useScoring.ts
+3. Database changes go in supabase/migrations/
