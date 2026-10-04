@@ -10,11 +10,16 @@ export const ProtectedRoute: React.FC = () => {
 
 	useEffect(() => {
 		const checkAuth = async () => {
-			const {
-				data: { session },
-			} = await supabase.auth.getSession();
-			setAuthenticated(!!session);
-			setLoading(false);
+			try {
+				const {
+					data: { session },
+				} = await supabase.auth.getSession();
+				setAuthenticated(!!session);
+			} catch {
+				setAuthenticated(false);
+			} finally {
+				setLoading(false);
+			}
 		};
 		checkAuth();
 

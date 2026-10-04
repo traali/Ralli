@@ -26,12 +26,21 @@ export const JoinPage: React.FC = () => {
 			// 1. Check if race exists and is in "lobby" or "active" status
 			let query = supabase.from('races').select('id, status');
 
-			if (cleanCode.length === 8) {
-				// Search by prefix if short code (8 hex chars)
-				const nextCode = (parseInt(cleanCode, 16) + 1).toString(16).padStart(8, '0');
-				query = query
-					.filter('id', 'gte', `${cleanCode}-0000-0000-0000-000000000000`)
-					.filter('id', 'lt', `${nextCode}-0000-0000-0000-000000000000`);
+			if (/^[0-9a-f]{8}$/.test(cleanCode)) {
+				// Short code is the first 8 hex chars. ffffffff + 1 became a 9-char bound and matched the wrong race.
+				const lower = `${cleanCode}-0000-0000-0000-000000000000`;
+				if (cleanCode === 'ffffffff') {
+					query = query
+						.filter('id', 'gte', lower)
+						.filter('id', 'lte', 'ffffffff-ffff-ffff-ffff-ffffffffffff');
+				} else {
+					const nextCode = (parseInt(cleanCode, 16) + 1).toString(16).padStart(8, '0');
+					query = query
+						.filter('id', 'gte', lower)
+						.filter('id', 'lt', `${nextCode}-0000-0000-0000-000000000000`);
+				}
+			} else if (!/^[0-9a-f-]{32,36}$/.test(cleanCode)) {
+				throw new Error('Race code must be 8 hex characters or a full id.');
 			} else {
 				query = query.eq('id', cleanCode);
 			}
